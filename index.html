@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#edf1e8" />
+  <title>little moments — photobooth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <button class="secret-trigger" id="secretTrigger" aria-label="Open a little surprise" title="A little surprise">
+    <img src="Columbine.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <span class="secret-fallback" aria-hidden="true">✿</span>
+  </button>
+
+  <div class="surprise-overlay" id="surpriseOverlay" aria-hidden="true">
+    <div class="confetti-layer" id="confettiLayer"></div>
+    <section class="surprise-card" role="dialog" aria-modal="true" aria-labelledby="surpriseQuestion">
+      <button class="surprise-close" id="closeSurprise" aria-label="Close">×</button>
+      <span class="surprise-flower">✿</span>
+      <p class="eyebrow">A VERY IMPORTANT QUESTION</p>
+      <h2 id="surpriseQuestion">Brody Ray Riley,<br><em>will you be my boyfriend?</em></h2>
+      <p class="surprise-note">a little question, from the heart ♡</p>
+    </section>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✳</span> little moments</a>
+    <span class="top-note">A TINY CORNER OF THE INTERNET</span>
+    <span class="date-label" id="todayLabel">YOUR PHOTO STUDIO</span>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <p class="eyebrow">THE GOOD OLD DAYS, RIGHT NOW</p>
+      <h1>Make a little<br><em>memory.</em></h1>
+      <p class="intro-copy">A digital photobooth for your favorite people, silly faces, and in-between moments.</p>
+      <div class="tiny-stamp">EST. 2026 <span>✳</span> KEEP THIS MOMENT</div>
+    </section>
+
+    <section class="booth-card">
+      <div class="booth-heading">
+        <div><span class="live-dot"></span><span class="eyebrow">THE PHOTO STUDIO</span></div>
+        <span class="mono" id="cameraStatus">CAMERA NOT STARTED</span>
+      </div>
+
+      <div class="camera-wrap" id="cameraWrap">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="photoCanvas" hidden></canvas>
+        <div class="camera-placeholder" id="placeholder">
+          <div class="placeholder-icon">✳</div>
+          <p>Your little photo moment<br>starts here.</p>
+          <span>Allow camera access when prompted</span>
+        </div>
+        <div class="camera-overlay">
+          <span class="rec"><i></i> REC</span>
+          <span class="frame-counter" id="frameCounter">0 PHOTOS</span>
+        </div>
+        <div class="countdown" id="countdown"></div>
+      </div>
+
+      <div class="camera-actions">
+        <button class="button button-dark" id="startCamera">Turn on camera <span>↗</span></button>
+        <button class="button button-outline" id="captureBtn" disabled>Take a photo <span>✳</span></button>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="filterSelect">FILTER</label>
+          <select id="filterSelect">
+            <option value="none">Original</option>
+            <option value="warm">Golden hour</option>
+            <option value="bw">Black & white</option>
+            <option value="soft">Soft focus</option>
+            <option value="sage">Sage film</option>
+            <option value="vintage">Vintage film</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="timerSelect">TIMER</label>
+          <select id="timerSelect">
+            <option value="0">No timer</option>
+            <option value="3">3 seconds</option>
+            <option value="5">5 seconds</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="captionInput">POLAROID NOTE</label>
+          <input id="captionInput" type="text" maxlength="32" placeholder="a lovely day..." />
+        </div>
+      </div>
+      <p class="hint">TIP: Take as many photos as you like. Each one gets its own little Polaroid.</p>
+    </section>
+
+    <aside class="side-panel">
+      <div class="side-title">
+        <div><p class="eyebrow">YOUR KEEPSAKES</p><h2>The photo<br><em>wall.</em></h2></div>
+        <span class="flower">✿</span>
+      </div>
+      <div class="gallery-stage">
+        <div class="empty-gallery" id="emptyGallery">
+          <span>✳</span>
+          <p>Your snapshots<br>will show up here.</p>
+        </div>
+        <div class="polaroid-gallery" id="polaroidGallery"></div>
+      </div>
+      <div class="strip-meta"><span id="shotCount">0 PHOTOS TAKEN</span><span>♥ FOR YOU</span></div>
+      <div class="side-actions">
+        <button class="button button-dark full" id="downloadBtn" disabled>Download all Polaroids <span>↓</span></button>
+        <button class="text-button" id="resetBtn">Clear photo wall ↗</button>
+      </div>
+      <div class="note-card"><span>✎ A NOTE TO SELF</span><p>“Collect moments,<br>not things.”</p></div>
+    </aside>
+  </main>
+
+  <footer><span>MADE FOR THE MOMENTS IN BETWEEN</span><span>✳ &nbsp; TAKE YOUR TIME &nbsp; ✳</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
